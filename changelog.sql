@@ -52,11 +52,3 @@ CREATE
 -- rollback MATCH (n)
 -- rollback DETACH DELETE n
 
--- changeset Tsvi:10
-GRANT SET USER HOME DATABASE
-
--- changeset Tsvi:11
-CREATE ROLE mysecondrole IF NOT EXISTS AS COPY OF myrole
-
--- changeset Tsvi:12
-REVOKE GRANT graph-privilege ON {HOME GRAPH | GRAPH[S] {* | name[, ...]}} [entity] FROM role[, ...]
