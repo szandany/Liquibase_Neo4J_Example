@@ -9,8 +9,8 @@ on:
   # pull_request:
   #   branches: [ main ]
    inputs:
-     tag:
-       description: 'Enter tag to rollback'
+     deploymentID:
+       description: 'Enter a deploymentID to rollback'
        required: true
 
 env:
@@ -32,9 +32,9 @@ jobs:
     - uses: actions/checkout@v2
     
     - name: Rolling back DEV changes
-      uses: docker://liquibase/liquibase:snowflake
+      uses: docker://liquibase/liquibase:latest
       with:
-        args: rollback ${{ github.event.inputs.tag }}
+        args: rollbackOneUpdate --${{ github.event.inputs.deploymentID }} --force
     
     - name: Runnig the History command 
       uses: docker://liquibase/liquibase:snowflake
