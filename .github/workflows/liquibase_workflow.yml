@@ -39,7 +39,7 @@ jobs:
     - name: Reviewing pending SQL changes
       uses: docker://liquibase/liquibase
       with:
-        args: status --verbose
+        args: status --verbose --log-level=info
     
     - name: Validating Database Changes
       uses: docker://liquibase/liquibase
