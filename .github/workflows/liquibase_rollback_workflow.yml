@@ -34,7 +34,7 @@ jobs:
     - name: Rolling back DEV changes
       uses: docker://liquibase/liquibase:latest
       with:
-        args: rollbackOneUpdate --${{ github.event.inputs.deploymentID }} --force
+        args: rollbackOneUpdate --deploymentID=${{ github.event.inputs.deploymentID }} --force
     
     - name: Runnig the History command 
       uses: docker://liquibase/liquibase:snowflake
