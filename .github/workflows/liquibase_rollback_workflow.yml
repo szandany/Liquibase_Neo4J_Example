@@ -51,16 +51,9 @@ jobs:
     - uses: actions/checkout@v2
     
     - name: Rolling back TEST changes
-      uses: docker://liquibase/liquibase:snowflake
-      with:
-        args: rollback ${{ github.event.inputs.tag }}
-    
-    - name: Runnig the History command 
-      uses: docker://liquibase/liquibase:snowflake
-      with:
-        args: liquibase history
+    - run: |
+        echo Rolling back TEST changes
           
-  
   Deploy_Prod_Job:
     needs: Test_Job
     runs-on: ubuntu-latest
@@ -68,15 +61,10 @@ jobs:
       name: PROD
 
     steps: 
-        - uses: actions/checkout@v2
-        
-        - name: Rolling back PROD changes
-          uses: docker://liquibase/liquibase:snowflake
-          with:
-            args: rollback ${{ github.event.inputs.tag }}
-            
-        - name: Runnig the History command 
-          uses: docker://liquibase/liquibase:snowflake
-          with:
-            args: liquibase history
+    - uses: actions/checkout@v2
+
+    - name: Rolling back PROD changes
+    - run: |
+        echo Rolling back PROD changes
+    
 
