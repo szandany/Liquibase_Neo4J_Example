@@ -48,11 +48,10 @@ jobs:
       name: TEST
 
     steps: 
-    - uses: actions/checkout@v2
-    
-    - name: Rolling back TEST changes
-    - run: |
-        echo Rolling back TEST changes
+      - name: Rolling back TEST changes
+        uses: actions/checkout@v2
+      - run: |
+          echo Rolling back TEST changes
           
   Deploy_Prod_Job:
     needs: Test_Job
@@ -61,9 +60,8 @@ jobs:
       name: PROD
 
     steps: 
-    - uses: actions/checkout@v2
-
     - name: Rolling back PROD changes
+      uses: actions/checkout@v2
     - run: |
         echo Rolling back PROD changes
     
