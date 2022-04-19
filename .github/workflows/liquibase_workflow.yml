@@ -65,26 +65,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     
-    - name: Running Quality Checks
-      uses: docker://liquibase/liquibase
-      with:
-        args: checks run
-        
-    - name: Reviewing pending SQL changes
-      uses: docker://liquibase/liquibase
-      with:
-        args: status --verbose
-    
-    - name: Validating Database Changes
-      uses: docker://liquibase/liquibase
-      with:
-        args: update
-      
-    - name: Validating rollbacks
-      uses: docker://liquibase/liquibase
-      with:
-        args: rollbackOneUpdate --force
-        
     - name: Deploying Database Changes
       uses: docker://liquibase/liquibase
       with:
@@ -99,30 +79,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    
-    - name: Running Quality Checks
-      uses: docker://liquibase/liquibase
-      with:
-        args: checks run
-        
-    - name: Reviewing pending SQL changes
-      uses: docker://liquibase/liquibase
-      with:
-        args: status --verbose
-    
-    - name: Validating Database Changes
-      uses: docker://liquibase/liquibase
-      with:
-        args: update
-      
-    - name: Validating rollbacks
-      uses: docker://liquibase/liquibase
-      with:
-        args: rollbackOneUpdate --force
         
     - name: Deploying Database Changes
       uses: docker://liquibase/liquibase
       with:
         args: update
         
-  
