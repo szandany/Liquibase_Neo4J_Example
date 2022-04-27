@@ -43,45 +43,45 @@ jobs:
     - name: Validating Database Changes
       uses: docker://liquibase/liquibase
       with:
-        args: update
+        args: updateSQL
       
-    - name: Validating rollbacks
-      uses: docker://liquibase/liquibase
-      with:
-        args: rollbackOneUpdate --force
+#     - name: Validating rollbacks
+#       uses: docker://liquibase/liquibase
+#       with:
+#         args: rollbackOneUpdate --force
         
-    - name: Deploying Database Changes
-      uses: docker://liquibase/liquibase
-      with:
-        args: update
+#     - name: Deploying Database Changes
+#       uses: docker://liquibase/liquibase
+#       with:
+#         args: update
           
     
-  Test_Job:
-    needs: Build_Job
-    runs-on: ubuntu-latest
-    environment: 
-      name: TEST
+#   Test_Job:
+#     needs: Build_Job
+#     runs-on: ubuntu-latest
+#     environment: 
+#       name: TEST
 
-    steps:
-    - uses: actions/checkout@v2
+#     steps:
+#     - uses: actions/checkout@v2
     
-    - name: Deploying Database Changes
-      uses: docker://liquibase/liquibase
-      with:
-        args: update
+#     - name: Deploying Database Changes
+#       uses: docker://liquibase/liquibase
+#       with:
+#         args: update
                 
 
-  Deploy_Prod_Job:
-    needs: Test_Job
-    runs-on: ubuntu-latest
-    environment: 
-      name: PROD
+#   Deploy_Prod_Job:
+#     needs: Test_Job
+#     runs-on: ubuntu-latest
+#     environment: 
+#       name: PROD
 
-    steps:
-    - uses: actions/checkout@v2
+#     steps:
+#     - uses: actions/checkout@v2
         
-    - name: Deploying Database Changes
-      uses: docker://liquibase/liquibase
-      with:
-        args: update
+#     - name: Deploying Database Changes
+#       uses: docker://liquibase/liquibase
+#       with:
+#         args: update
         
