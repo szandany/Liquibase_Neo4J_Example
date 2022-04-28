@@ -19,7 +19,6 @@ env:
     LIQUIBASE_COMMAND_PASSWORD: ${{ secrets.LIQUIBASE_COMMAND_PASSWORD }}
     LIQUIBASE_COMMAND_CHANGELOG_FILE: ${{ secrets.LIQUIBASE_COMMAND_CHANGELOG_FILE }}
     LIQUIBASE_CLASSPATH: ${{ secrets.LIQUIBASE_CLASSPATH }}
-    JAVA_OPTS: "-DVERSION=11 -DVERSION2=11"
     
 jobs:
 
@@ -44,7 +43,7 @@ jobs:
     - name: Validating Database Changes
       uses: docker://liquibase/liquibase
       with:
-        args: updateSQL -DVERSION="13"
+        args: updateSQL
       
 #     - name: Validating rollbacks
 #       uses: docker://liquibase/liquibase
