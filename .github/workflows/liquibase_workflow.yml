@@ -43,7 +43,7 @@ jobs:
     - name: Validating Database Changes
       uses: docker://liquibase/liquibase
       with:
-        args: updateSQL
+        args: update
       
 #     - name: Validating rollbacks
 #       uses: docker://liquibase/liquibase
