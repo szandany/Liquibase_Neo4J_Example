@@ -3,7 +3,7 @@
 version: 2.1
 
 jobs:
-  inspect_db:
+  inspect_db_code:
     docker:
       - image: liquibase/liquibase:latest
 
@@ -17,14 +17,14 @@ jobs:
           name: "Run Liquibase Quality Checks"
           command: "liquibase --changeLogFile=main.xml checks run"
   
-  deploy_dev:
+  deploy_dev_db:
     docker:
       - image: liquibase/liquibase:latest
     steps:
     - checkout
     - run:
         name: "Run Liquibase version"
-        command: "liquibase --version"
+        command: echo "running changes against dev database"
   
   build:
     docker:
@@ -39,5 +39,7 @@ jobs:
 workflows:
   liquibase:
     jobs:
+      - inspect_db_code
+      - deploy_dev_db
       - build
 
