@@ -19,12 +19,12 @@ jobs:
   
   deploy_dev_db:
     docker:
-      - image: liquibase/liquibase:latest
+      - image: liquibase/liquibase:4.10.0
     steps:
     - checkout
     - run:
-        name: "Run Liquibase version"
-        command: echo "running changes against dev database"
+        name: "Run database changes against dev database"
+        command: echo "liquibase update"
   
   build:
     docker:
@@ -32,7 +32,7 @@ jobs:
     steps:
     - checkout
     - run:
-        name: "Run Liquibase version"
+        name: "Build app changes"
         command: echo "building app changes"
 
 
@@ -42,4 +42,3 @@ workflows:
       - inspect_db_code
       - deploy_dev_db
       - build
-
