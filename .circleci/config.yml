@@ -40,5 +40,10 @@ workflows:
   ci_workflow:
     jobs:
       - inspect_db_code
-      - deploy_dev_db
-      - build_app
+      - deploy_dev_db:
+          requires:
+            - inspect_db_code
+      - build_app:
+          requires:
+            - deploy_dev_db
+
