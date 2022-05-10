@@ -3,7 +3,7 @@
 version: 2.1
 
 jobs:
-  run-liquibase:
+  inspect_db:
     docker:
       - image: liquibase/liquibase:latest
 
@@ -16,8 +16,28 @@ jobs:
       - run: 
           name: "Run Liquibase Quality Checks"
           command: "liquibase --changeLogFile=main.xml checks run"
+  
+  deploy_dev:
+    docker:
+      - image: liquibase/liquibase:latest
+    steps:
+    - checkout
+    - run:
+        name: "Run Liquibase version"
+        command: "liquibase --version"
+  
+  build:
+    docker:
+      - image: maven:3.3-jdk-8
+    steps:
+    - checkout
+    - run:
+        name: "Run Liquibase version"
+        command: echo "building app changes"
+
 
 workflows:
-  liquibase-qc-workflow:
+  liquibase:
     jobs:
-      - run-liquibase
+      - build
+
