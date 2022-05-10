@@ -10,10 +10,12 @@ jobs:
     steps:
       - checkout
       - run:
+          name: "Run Liquibase version"
+          command: "liquibase --version"
+
+      - run: 
           name: "Run Liquibase Quality Checks"
-          command: |
-            "liquibase --version"
-            "liquibase --changeLogFile=main.xml checks run"
+          command: "liquibase --changeLogFile=main.xml checks run"
 
 workflows:
   liquibase-qc-workflow:
