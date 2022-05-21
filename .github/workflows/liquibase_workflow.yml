@@ -28,15 +28,15 @@ jobs:
       name: DEV
 
     steps:
-    - name: testJob
+    - name: Running Quality Checks
       uses: actions/checkout@v2
     - run: |
-        echo "hello world"
+        liquibase checks run
 
-    - name: Running Quality Checks
-      uses: docker://liquibase/liquibase
-      with:
-        args: checks run
+#     - name: Running Quality Checks
+#       uses: docker://liquibase/liquibase
+#       with:
+#         args: checks run
         
 #     - name: Reviewing pending SQL changes
 #       uses: docker://liquibase/liquibase
