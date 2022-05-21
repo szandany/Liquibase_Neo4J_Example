@@ -29,11 +29,23 @@ jobs:
       name: DEV
 
     steps:
-    - name: Running Quality Checks
+    - name: Running Quality Checks and code review
       uses: actions/checkout@v2
     - run: |
         tree
         liquibase checks run
+        liquibase status --verbose --log-level=info
+    
+    - name: Validating Database Changes
+      uses: actions/checkout@v2
+    - run: |
+        liquibase update
+        liquibase rollbackOneUpdate --force
+    
+    - name: Deploying Database Changes
+      uses: actions/checkout@v2
+    - run: |
+        liquibase update
 
 #     - name: Running Quality Checks
 #       uses: docker://liquibase/liquibase
