@@ -33,7 +33,8 @@ jobs:
     - run: |
         tree
         ls
-        liquibase checks run
+        pwd
+#        liquibase checks run
 
 #     - name: Running Quality Checks
 #       uses: docker://liquibase/liquibase
