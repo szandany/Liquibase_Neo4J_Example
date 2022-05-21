@@ -28,22 +28,25 @@ jobs:
       name: DEV
 
     steps:
-    - uses: actions/checkout@v2
-    
-    - name: Running Quality Checks
-      uses: docker://liquibase/liquibase
-      with:
-        args: checks run
+    - name: testJob
+      uses: actions/checkout@v2
+    - run: |
+        echo "hello world"
+
+#     - name: Running Quality Checks
+#       uses: docker://liquibase/liquibase
+#       with:
+#         args: checks run
         
-    - name: Reviewing pending SQL changes
-      uses: docker://liquibase/liquibase
-      with:
-        args: status --verbose --log-level=info
+#     - name: Reviewing pending SQL changes
+#       uses: docker://liquibase/liquibase
+#       with:
+#         args: status --verbose --log-level=info
     
-    - name: Validating Database Changes
-      uses: docker://liquibase/liquibase
-      with:
-        args: update
+#     - name: Validating Database Changes
+#       uses: docker://liquibase/liquibase
+#       with:
+#         args: update
       
 #     - name: Validating rollbacks
 #       uses: docker://liquibase/liquibase
