@@ -33,10 +33,10 @@ jobs:
     - run: |
         echo "hello world"
 
-#     - name: Running Quality Checks
-#       uses: docker://liquibase/liquibase
-#       with:
-#         args: checks run
+    - name: Running Quality Checks
+      uses: docker://liquibase/liquibase
+      with:
+        args: checks run
         
 #     - name: Reviewing pending SQL changes
 #       uses: docker://liquibase/liquibase
