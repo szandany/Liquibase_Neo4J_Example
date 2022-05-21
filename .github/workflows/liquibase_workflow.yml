@@ -31,6 +31,8 @@ jobs:
     - name: Running Quality Checks
       uses: actions/checkout@v2
     - run: |
+        tree
+        ls
         liquibase checks run
 
 #     - name: Running Quality Checks
