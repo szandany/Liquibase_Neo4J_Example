@@ -18,7 +18,8 @@ env:
     LIQUIBASE_COMMAND_USERNAME: ${{ secrets.LIQUIBASE_COMMAND_USERNAME }}
     LIQUIBASE_COMMAND_PASSWORD: ${{ secrets.LIQUIBASE_COMMAND_PASSWORD }}
     LIQUIBASE_COMMAND_CHANGELOG_FILE: ${{ secrets.LIQUIBASE_COMMAND_CHANGELOG_FILE }}
-    LIQUIBASE_CLASSPATH: ${{ secrets.LIQUIBASE_CLASSPATH }}
+#   LIQUIBASE_CLASSPATH: ${{ secrets.LIQUIBASE_CLASSPATH }}
+    LIQUIBASE_CLASSPATH: "./dependencies/liquibase-neo4j-4.9.1.jar:./dependencies/neo4j-jdbc-driver-4.0.5.jar:./dependencies/slf4j-simple-1.6.1.jar"
     
 jobs:
 
@@ -32,9 +33,7 @@ jobs:
       uses: actions/checkout@v2
     - run: |
         tree
-        ls
-        pwd
-#        liquibase checks run
+        liquibase checks run
 
 #     - name: Running Quality Checks
 #       uses: docker://liquibase/liquibase
